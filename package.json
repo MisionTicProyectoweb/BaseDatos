@@ -1,0 +1,19 @@
+{
+    "name": "BDTECNOLOGIA",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/MisionTicProyectoweb/BaseDatos.git",
+    "author": "manuel <manuelguma25@gmail.com>",
+    "license": "MIT",
+    "type": "module",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.13"
+    },
+    "scripts": {
+        "start": "nodemon server.js"
+
+    }
+}
