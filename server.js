@@ -35,3 +35,4 @@ rutasProductos.route('/productos/:id').delete((req, res) => {
 });
 
 export default rutasProductos;
+
