@@ -1,38 +1,36 @@
+// hacer el import de express tradicional
+// const express = require('express');
+// se instala nodemon asi: yarn add -D nodemon
+
+// se debe agregar "type": "module", en el package.json para importar express con el nuevo import
+// agregar tambien en el package.json
+//   "scripts": {
+//    "start": "nodemon server.js"
+//  },
+
+// hacer el nuevo import
 import Express from 'express';
-import {
-    queryAllVehicles,
-    crearProductos,
-    editarProductos,
-    eliminarProductos,
-} from '../../controllers/productos/controller.js';
-import { getDB } from '../../db/db.js';
+import Cors from 'cors';
+import dotenv from 'dotenv';
+import { conectarBD } from './db/db.js';
+import rutasProducto from './views/productos/rutas.js';
+//import rutasUsuario from './views/usuarios/rutas.js';
+//import rutasVenta from './views/ventas/rutas.js';
 
-const rutasProductos = Express.Router();
+dotenv.config({ path: './.env' });
 
-const genercCallback = (res) => (err, result) => {
-    if (err) {
-        res.status(500).send('Error consultando los Productoss');
-    } else {
-        res.json(result);
-    }
+const app = Express();
+
+app.use(Express.json());
+app.use(Cors());
+app.use(rutasProducto);
+//app.use(rutasUsuario);
+//app.use(rutasVenta);
+
+const main = () => {
+  return app.listen(process.env.PORT, () => {  
+    console.log(`escuchando puerto ${process.env.PORT}`); 
+  });
 };
 
-rutasProductos.route('/productos').get((req, res) => {
-    console.log('alguien hizo get en la ruta /productos');
-    queryAllVehicles(genercCallback(res));
-});
-
-rutasProductos.route('/productos').post((req, res) => {
-    crearProductos(req.body, genercCallback(res));
-});
-
-rutasProductos.route('/productos/:id').patch((req, res) => {
-    editarProductos(req.params.id, req.body, genercCallback(res));
-});
-
-rutasProductos.route('/productos/:id').delete((req, res) => {
-    eliminarProductos(req.params.id, genercCallback(res));
-});
-
-export default rutasProductos;
-
+conectarBD(main);
