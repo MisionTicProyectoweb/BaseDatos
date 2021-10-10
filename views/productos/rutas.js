@@ -1,42 +1,42 @@
 import Express from 'express';
 import {
-    queryAllVehicles,
-    crearVehiculo,
-    editarVehiculo,
-    eliminarVehiculo,
-    consultarVehiculo,
-} from '../../controllers/vehiculos/controller.js';
+    queryAllProductos,
+    crearProducto,
+    editarProducto,
+    eliminarProducto,
+    consultarProducto,
+} from '../../controllers/productos/controller.js';
 
-const rutasVehiculo = Express.Router();
+const rutasProducto = Express.Router();
 
 const genercCallback = (res) => (err, result) => {
     if (err) {
-        res.status(500).send('Error consultando los vehiculos');
+        res.status(500).send('Error consultando los productos');
     } else {
         res.json(result);
     }
 };
 
-rutasVehiculo.route('/vehiculos').get((req, res) => {
-    console.log('alguien hizo get en la ruta /vehiculos');
-    queryAllVehicles(genercCallback(res));
+rutasProducto.route('/productos').get((req, res) => {
+    console.log('Alguien hizo get en la ruta /productos');
+    queryAllProductos(genercCallback(res));
 });
 
-rutasVehiculo.route('/vehiculos').post((req, res) => {
-    crearVehiculo(req.body, genercCallback(res));
+rutasProducto.route('/productos').post((req, res) => {
+    crearProducto(req.body, genercCallback(res));
 });
 
-rutasVehiculo.route('/vehiculos/:id').get((req, res) => {
-    console.log('alguien hizo get en la ruta /vehiculos');
-    consultarVehiculo(req.params.id, genercCallback(res));
+rutasProducto.route('/productos/:id').get((req, res) => {
+    console.log('alguien hizo get en la ruta /productos');
+    consultarProducto(req.params.id, genercCallback(res));
 });
 
-rutasVehiculo.route('/vehiculos/:id').patch((req, res) => {
-    editarVehiculo(req.params.id, req.body, genercCallback(res));
+rutasProducto.route('/productos/:id').patch((req, res) => {
+    editarProducto(req.params.id, req.body, genercCallback(res));
 });
 
-rutasVehiculo.route('/vehiculos/:id').delete((req, res) => {
-    eliminarVehiculo(req.params.id, genercCallback(res));
+rutasProducto.route('/productos/:id').delete((req, res) => {
+    eliminarProducto(req.params.id, genercCallback(res));
 });
 
-export default rutasVehiculo;
+export default rutasProducto;

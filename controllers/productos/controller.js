@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
-import { getDB } from '../../../SemanaV/api-concesionario/db/db.js';
+import { getDB } from '../../../BaseDatos/db/db.js';
 
-const queryAllVehicles = async (callback) => {
+const queryAllProductos = async (callback) => {
   const baseDeDatos = getDB();
   await baseDeDatos.collection('producto').find().limit(50).toArray(callback);
 };
@@ -13,7 +13,7 @@ const crearProductos = async (datosProductos, callback) => {
     Object.keys(datosProductos).includes('model')
   ) {
     const baseDeDatos = getDB();
-    // implementar código para crear vehículo en la BD
+    // implementar código para crear producto en la BD
     await baseDeDatos.collection('productos').insertOne(datosProductos, callback);
   } else {
     return 'error';
@@ -37,4 +37,4 @@ const eliminarProductos = async (id, callback) => {
   await baseDeDatos.collection('productos').deleteOne(filtroProductos, callback);
 };
 
-export { queryAllVehicles, crearProductos, editarProductos, eliminarProductos };
+export { queryAllProductos, crearProductos, editarProductos, eliminarProductos };
