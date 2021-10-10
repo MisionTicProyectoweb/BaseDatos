@@ -44,4 +44,4 @@ const eliminarProducto = async (id, callback) => {
   await baseDeDatos.collection('producto').deleteOne(filtroProducto, callback);
 };
 
-export { queryAllProductos, crearProductos, editarProductos, eliminarProductos };
+export { queryAllProductos, crearProducto, editarProducto, eliminarProducto };
