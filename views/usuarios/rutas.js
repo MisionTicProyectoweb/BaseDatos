@@ -1,5 +1,5 @@
 import Express from 'express';
-import {queryAllUsuarios, eliminarUsuario, editarUsuario} from '../../controllers/usuarios/controller.js';
+import {queryAllUsuarios, eliminarUsuario, editarUsuario, crearUsuario} from '../../controllers/usuarios/controller.js';
 
 const rutasUsuario = Express.Router();
 
@@ -10,6 +10,10 @@ const genercCallback = (res) => (err, result) => {
     res.json(result);
   }
 };
+
+rutasUsuario.route('/usuarios/nuevo').post((req, res) => {
+  crearUsuario(req.body, genercCallback(res));
+});
 
 rutasUsuario.route('/usuarios').get((req, res) => {
   queryAllUsuarios(genercCallback(res));

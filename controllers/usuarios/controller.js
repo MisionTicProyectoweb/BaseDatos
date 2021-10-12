@@ -1,6 +1,21 @@
 import { ObjectId } from 'mongodb';
 import { getDB } from '../../db/db.js';
 
+const crearUsuario = async (datosUsuarios, callback) => {
+  if (
+    Object.keys(datosUsuarios).includes('ccUsuario') &&
+    Object.keys(datosUsuarios).includes('nombre') &&
+    Object.keys(datosUsuarios).includes('apellido') &&
+    Object.keys(datosUsuarios).includes('estado') &&
+    Object.keys(datosUsuarios).includes('rol')
+  ) {
+    const baseDeDatos = getDB();
+    await baseDeDatos.collection('usuario').insertOne(datosUsuarios, callback);
+  } else {
+    return 'error';
+  }
+};
+
 const queryAllUsuarios = async (callback) => {
   const baseDeDatos = getDB();
   await baseDeDatos.collection('usuario').find({}).limit(50).toArray(callback);
@@ -24,4 +39,4 @@ const editarUsuario = async (id, edicion, callback) => {
     .findOneAndUpdate(filtroUsuario, operacion, { upsert: true, returnOriginal: true }, callback);
 };
 
-export {queryAllUsuarios, eliminarUsuario, editarUsuario};
+export {queryAllUsuarios, eliminarUsuario, editarUsuario, crearUsuario};
