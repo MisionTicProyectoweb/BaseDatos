@@ -19,7 +19,7 @@ const conectarBD = (callback) => {
             return 'error';
         }
         baseDeDatos = db.db('DBTSolutions');
-        console.log('baseDeDatos exitosa');
+        console.log('Conexion a DBTSolutions exitosa');
         return callback();
     });
 };
