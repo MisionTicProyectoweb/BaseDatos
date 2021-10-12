@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { getDB } from '../../../BaseDatos/db/db.js';
+import { getDB } from '../../db/db.js';
 
 const queryAllProductos = async (callback) => {
   const baseDeDatos = getDB();
