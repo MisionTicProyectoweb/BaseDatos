@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { getDB } from '../../db/db.js';
+import { getDB } from '../../../BaseDatos/db/db.js';
 
 const queryAllProductos = async (callback) => {
   const baseDeDatos = getDB();
@@ -15,7 +15,7 @@ const crearProducto = async (datosProducto, callback) => {
   ) {
     const baseDeDatos = getDB();
     // implementar código para crear producto en la BD
-    await baseDeDatos.collection('producto').insertOne(datosProducto, callback);
+    await baseDeDatos.collection('productos').insertOne(datosProductos, callback);
   } else {
     return 'error';
   }
@@ -44,4 +44,4 @@ const eliminarProducto = async (id, callback) => {
   await baseDeDatos.collection('producto').deleteOne(filtroProducto, callback);
 };
 
-export { queryAllProductos, crearProducto, consultarProducto, editarProducto, eliminarProducto };
+export { queryAllProductos, crearProducto, consultarProducto,editarProducto, eliminarProducto };
