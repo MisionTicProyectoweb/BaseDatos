@@ -28,8 +28,8 @@ app.use(rutasUsuario);
 app.use(rutasVenta);
 
 const main = () => {
-  return app.listen(process.env.PORT, () => {  
-    console.log(`Escuchando puerto ${process.env.PORT}`); 
+  return app.listen(process.env.PORT, () => {
+    console.log(`escuchando puerto ${process.env.PORT}`);
   });
 };
 
