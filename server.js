@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-// hacer el import de express tradicional
-// const express = require('express');
-// se instala nodemon asi: yarn add -D nodemon
-
-// se debe agregar "type": "module", en el package.json para importar express con el nuevo import
-// agregar tambien en el package.json
-//   "scripts": {
-//    "start": "nodemon server.js"
-//  },
-
-// hacer el nuevo import
-=======
->>>>>>> 7fa2c518b6372571ab4f3c20655b89ee0e15adf4
 import Express from 'express';
 import Cors from 'cors';
 import dotenv from 'dotenv';
