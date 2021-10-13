@@ -8,8 +8,8 @@ const queryAllProductos = async (callback) => {
 
 const crearProducto = async (datosProducto, callback) => {
   if (
-    Object.keys(datosProducto).includes('idProducto') &&
     Object.keys(datosProducto).includes('nombreProducto') &&
+    Object.keys(datosProducto).includes('marca') &&
     Object.keys(datosProducto).includes('valorUnitario') &&
     Object.keys(datosProducto).includes('estado')
   ) {
