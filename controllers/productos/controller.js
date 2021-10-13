@@ -15,7 +15,7 @@ const crearProducto = async (datosProducto, callback) => {
   ) {
     const baseDeDatos = getDB();
     // implementar código para crear producto en la BD
-    await baseDeDatos.collection('productos').insertOne(datosProductos, callback);
+    await baseDeDatos.collection('producto').insertOne(datosProducto, callback);
   } else {
     return 'error';
   }
