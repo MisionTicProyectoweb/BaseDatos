@@ -18,16 +18,16 @@ const genercCallback = (res) => (err, result) => {
 };
 
 rutasProducto.route('/productos').get((req, res) => {
-  console.log('alguien hizo get en la ruta /productos');
+  console.log('Alguien hizo get en la ruta /productos');
   queryAllProductos(genercCallback(res));
 });
 
-rutasProducto.route('/productos/nuevo').post((req, res) => {
+rutasProducto.route('/productos').post((req, res) => {
   crearProducto(req.body, genercCallback(res));
 });
 
 rutasProducto.route('/productos/:id').get((req, res) => {
-  console.log('alguien hizo get en la ruta /productos');
+  console.log('Alguien hizo get en la ruta /productos');
   consultarProducto(req.params.id, genercCallback(res));
 });
 
