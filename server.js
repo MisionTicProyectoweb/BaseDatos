@@ -12,9 +12,12 @@ const app = Express();
 app.use(Express.json());
 app.use(Cors());
 
+//este jwtcheck protege las rutas y solo son accedidas las que
+//contienen el token de validacion en el header de los axios 
+//en los header de los axios de cada ruta hay un header que tiene  Authorization: getToken()
+//--------------falta colocarlo a las otras rutas que falta agregar en util/api.js
 
-
-const jwtCheck = jwt({
+const JwtCheck = jwt({
     secret: jwks.expressJwtSecret({
         cache: true,
         rateLimit: true,
@@ -26,7 +29,7 @@ const jwtCheck = jwt({
     algorithms: ['RS256']
 });
 
-app.use(jwtCheck);
+app.use(JwtCheck);
 app.use(rutasProducto);
 app.use(rutasUsuario);
 app.use(rutasVenta);
