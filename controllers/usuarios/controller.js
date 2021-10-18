@@ -41,8 +41,8 @@ const consultaroCrearUsuario = async(req, callback) => {
             //7.2 si el usuario no esta en la bd, lo creo y devulve la info 
             user.auth0ID = user._id;
             delete user._id;
-            user.estado = 'No autorizado';
-            user.rol = "";
+            user.estado = 'Pendiente';
+            user.rol = "Sin rol";
             await crearUsuario(user, (err, res) => callback(err, user));
         }
     })

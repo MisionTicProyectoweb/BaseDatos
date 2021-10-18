@@ -7,6 +7,7 @@ import rutasUsuario from './views/usuarios/rutas.js';
 import rutasVenta from './views/ventas/rutas.js';
 import jwt from 'express-jwt';
 import jwks from 'jwks-rsa';
+import AutorizacionEstadoUsuario from './middleware/AutorizacionEstadoUsuario.js';
 dotenv.config({ path: './.env' });
 const app = Express();
 app.use(Express.json());
@@ -28,8 +29,10 @@ const JwtCheck = jwt({
     issuer: 'https://mintic-proyecto.us.auth0.com/',
     algorithms: ['RS256']
 });
-
+//4 Y 5 EVIARLE EL TOKEN A AUTH0 PARA QUE DEVULVA SI EL VALIDO O NO 
 app.use(JwtCheck);
+
+app.use(AutorizacionEstadoUsuario);
 app.use(rutasProducto);
 app.use(rutasUsuario);
 app.use(rutasVenta);
