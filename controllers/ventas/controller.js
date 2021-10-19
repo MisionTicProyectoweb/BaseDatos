@@ -8,10 +8,12 @@ const queryAllVenta = async (callback) => {
 
 const crearVenta = async (datosVenta, callback) => {
   if (
-    Object.keys(datosVenta).includes('') &&
-    Object.keys(datosVenta).includes('') &&
-    Object.keys(datosVenta).includes('') &&
-    Object.keys(datosVenta).includes('')
+    Object.keys(datosVenta).includes('idVentas') &&
+    Object.keys(datosVenta).includes('arrayProductos') &&
+    Object.keys(datosVenta).includes('fecha') &&
+    Object.keys(datosVenta).includes('ccCliente') &&
+    Object.keys(datosVenta).includes('valor') &&
+    Object.keys(datosVenta).includes('idVendedor')
   ) {
     const baseDeDatos = getDB();
     await baseDeDatos.collection('ventas').insertOne(datosVenta, callback);
@@ -21,8 +23,9 @@ const crearVenta = async (datosVenta, callback) => {
 };
 
 const consultarVenta = async (id, callback) => {
+  const filtroVenta = { _id: new ObjectId(id) };
   const baseDeDatos = getDB();
-  await baseDeDatos.collection('venta').findOne({ _id: new ObjectId(id) }, callback);
+  await baseDeDatos.collection('ventas').findOne(filtroVenta, callback);
 };
 
 const editarVenta = async (id, edicion, callback) => {  
@@ -32,14 +35,14 @@ const editarVenta = async (id, edicion, callback) => {
   };  
   const baseDeDatos = getDB();
   await baseDeDatos
-    .collection('venta')
+    .collection('ventas')
     .findOneAndUpdate(filtroVenta, operacion, { upsert: true, returnOriginal: true }, callback);
 };
 
 const eliminarVenta = async (id, callback) => {
-  const filtroProducto = { _id: new ObjectId(id) };
+  const filtroVenta = { _id: new ObjectId(id) };
   const baseDeDatos = getDB();
-  await baseDeDatos.collection('venta').deleteOne(filtroProducto, callback);
+  await baseDeDatos.collection('ventas').deleteOne(filtroVenta, callback);
 };
 
 export { queryAllVenta, crearVenta, consultarVenta,editarVenta, eliminarVenta };

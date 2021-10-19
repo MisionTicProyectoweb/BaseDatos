@@ -5,6 +5,7 @@ import { conectarBD } from './db/db.js';
 import rutasProducto from './views/productos/rutas.js';
 import rutasUsuario from './views/usuarios/rutas.js';
 import rutasVenta from './views/ventas/rutas.js';
+import rutasCliente from './views/clientes/rutas.js';
 
 dotenv.config({ path: './.env' });
 
@@ -15,6 +16,7 @@ app.use(Cors());
 app.use(rutasProducto);
 app.use(rutasUsuario);
 app.use(rutasVenta);
+app.use(rutasCliente);
 
 const main = () => {
   return app.listen(process.env.PORT, () => {
