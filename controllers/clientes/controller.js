@@ -3,9 +3,11 @@ import { getDB } from '../../db/db.js';
 
 const crearCliente = async (datosClientes, callback) => {
   if (
-    Object.keys(datosClientes).includes('cccliente') &&
+    Object.keys(datosClientes).includes('cedula') &&
     Object.keys(datosClientes).includes('nombre') &&
-    Object.keys(datosClientes).includes('apellido')
+    Object.keys(datosClientes).includes('apellido') &&
+    Object.keys(datosClientes).includes('tel') &&
+    Object.keys(datosClientes).includes('correo')
   ) {
     const baseDeDatos = getDB();
     await baseDeDatos.collection('cliente').insertOne(datosClientes, callback);

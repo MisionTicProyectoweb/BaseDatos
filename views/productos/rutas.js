@@ -21,7 +21,7 @@ rutasProducto.route('/productos').get((req, res) => {
   queryAllProductos(genercCallback(res));
 });
 
-rutasProducto.route('/productos').post((req, res) => {
+rutasProducto.route('/productos/nuevo').post((req, res) => {
     crearProducto(req.body, genercCallback(res));
 });
 

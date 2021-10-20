@@ -6,14 +6,12 @@ const AutorizacionEstadoUsuario = async(req, ress, next) => {
 
     const token = req.headers.authorization.split('Bearer')[1];
     const user = jwtDecode(token)['http://localhost/userData'];
-    console.log(user);
     //2.consultar el usuario en la bd
     const basedatos = getDB();
     await basedatos.collection('usuario').findOne({ email: user.email }, async(err, res) => {
 
 
         if (res) {
-            console.log("estado de usarui", res);
             //3.verificar el estado del usuario.
             if (res.estado === 'No autorizado') {
                 //si el usuario es No autorizado devolver  un error de autenticacion 
@@ -28,7 +26,6 @@ const AutorizacionEstadoUsuario = async(req, ress, next) => {
             }
         }
     });
-    console.log('hola mundo soy una middlewere');
     next();
 }
 export default AutorizacionEstadoUsuario;

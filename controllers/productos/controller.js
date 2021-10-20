@@ -8,13 +8,14 @@ const queryAllProductos = async (callback) => {
 
 const crearProducto = async (datosProducto, callback) => {
   if (
+    Object.keys(datosProducto).includes('idProducto') &&
     Object.keys(datosProducto).includes('nombreProducto') &&
-    Object.keys(datosProducto).includes('marca') &&
     Object.keys(datosProducto).includes('valorUnitario') &&
     Object.keys(datosProducto).includes('estado')
   ) {
     const baseDeDatos = getDB();
     // implementar código para crear producto en la BD
+    console.log("enviado")
     await baseDeDatos.collection('producto').insertOne(datosProducto, callback);
   } else {
     return 'error';

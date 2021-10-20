@@ -17,23 +17,23 @@ const genercCallback = (res) => (err, result) => {
   }
 };
 
-rutasCliente.route('/Clientes').get((req, res) => {
+rutasCliente.route('/clientes').get((req, res) => {
   queryAllClientes(genercCallback(res));
 });
 
-rutasCliente.route('/Clientes').post((req, res) => {
+rutasCliente.route('/clientes/nuevo').post((req, res) => {
   crearCliente(req.body, genercCallback(res));
 });
 
-rutasCliente.route('/Clientes/:id').get((req, res) => {
+rutasCliente.route('/clientes/:id').get((req, res) => {
   consultarCliente(req.params.id, genercCallback(res));
 });
 
-rutasCliente.route('/Clientes/:id').patch((req, res) => {
+rutasCliente.route('/clientes/:id').patch((req, res) => {
   editarCliente(req.params.id, req.body, genercCallback(res));
 });
 
-rutasCliente.route('/Clientes/:id').delete((req, res) => {
+rutasCliente.route('/clientes/:id').delete((req, res) => {
   eliminarCliente(req.params.id, genercCallback(res));
 });
 
