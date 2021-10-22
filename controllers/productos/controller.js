@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { getDB } from '../../../BaseDatos/db/db.js';
+import { getDB } from '../../db/db.js';
 
 const queryAllProductos = async (callback) => {
   const baseDeDatos = getDB();
@@ -15,6 +15,7 @@ const crearProducto = async (datosProducto, callback) => {
   ) {
     const baseDeDatos = getDB();
     // implementar código para crear producto en la BD
+    console.log("enviado")
     await baseDeDatos.collection('producto').insertOne(datosProducto, callback);
   } else {
     return 'error';
