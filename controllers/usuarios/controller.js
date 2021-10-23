@@ -45,9 +45,9 @@ const consultaroCrearUsuario = async(req, callback) => {
             user.rol = "Sin rol";
             await crearUsuario(user, (err, res) => callback(err, user));
         }
-    })
+    });
 
-}
+};
 const eliminarUsuario = async(id, callback) => {
     const filtroUsuario = { _id: new ObjectId(id) };
     const baseDeDatos = getDB();
