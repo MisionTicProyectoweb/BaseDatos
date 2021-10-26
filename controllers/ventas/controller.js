@@ -16,7 +16,8 @@ const crearVenta = async (datosVenta, callback) => {
     Object.keys(datosVenta).includes('idVendedor')
   ) {
     const baseDeDatos = getDB();
-    await baseDeDatos.collection('ventas').insertOne(datosVenta, callback);
+    await baseDeDatos.collection('ventas').insertOne(datosVenta, callback); 
+    console.log("respuesta: ", callback)  
   } else {
     return 'error';
   }

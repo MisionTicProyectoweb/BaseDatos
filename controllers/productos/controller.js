@@ -11,6 +11,7 @@ const crearProducto = async (datosProducto, callback) => {
     Object.keys(datosProducto).includes('idProducto') &&
     Object.keys(datosProducto).includes('nombreProducto') &&
     Object.keys(datosProducto).includes('valorUnitario') &&
+    Object.keys(datosProducto).includes('cantidad') &&
     Object.keys(datosProducto).includes('estado')
   ) {
     const baseDeDatos = getDB();
@@ -27,9 +28,8 @@ const consultarProducto = async (id, callback) => {
   await baseDeDatos.collection('producto').findOne({ _id: new ObjectId(id) }, callback);
 };
 
-const editarProducto = async (id, edicion, callback) => {  
+const editarProducto = async (id, edicion, callback) => { 
   const filtroProducto = { _id: new ObjectId(id) };
-  //delete edicion.id
   const operacion = {
     $set: edicion,
   };  
@@ -37,6 +37,8 @@ const editarProducto = async (id, edicion, callback) => {
   await baseDeDatos
     .collection('producto')
     .findOneAndUpdate(filtroProducto, operacion, { upsert: true, returnOriginal: true }, callback);
+    console.log("Enviar: ",operacion);
+    console.log("envia: ",edicion);
 };
 
 const eliminarProducto = async (id, callback) => {
